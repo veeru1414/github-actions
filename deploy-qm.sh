@@ -99,7 +99,19 @@ spec:
           - tls.crt
 EOF
 
+
+for i in {1}
+do
+  phase=`oc get qmgr -n cp4i qm1 -o jsonpath="{.status.phase}"`
+  if [ "$phase" == "Running" ] ; then break; fi
+  echo "Waiting for qm1...$i"
+  oc get qmgr -n cp4i qm1
+  sleep 5
+done
+
+if [ $phase != Running ]
 oc apply -n cp4i -f qm1-qmgr.yaml
+fi
 
 # wait 5 minutes for queue manager to be up and running
 # (shouldn't take more than 2 minutes, but just in case)
