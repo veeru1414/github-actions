@@ -15,6 +15,11 @@ jobs:
        continue-on-error: true
        run: |
         bash ../cleanup.sh
+        pwd
+        ls
+        cd ..
+        pwd
+        ls
         echo "::set-output name=exit-code::$?"
         echo "$?"
         echo "${{ steps.execute-script.outputs.exit-code == '0' }}"
