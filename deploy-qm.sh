@@ -5,7 +5,7 @@
 
 openssl req -newkey rsa:2048 -nodes -keyout qm1.key -subj "/CN=qm1" -x509 -days 3650 -out qm1.crt
 
-# Create the client key database:
+# Create the client key database::
 
 # runmqakm -keydb -create -db app1key.kdb -pw password -type cms -stash
 
