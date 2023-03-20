@@ -8,5 +8,5 @@ jobs:
    runs-on: self-hosted
    steps:
      - name: Run build script
-       run: ./home/bandaru/git-act/scripts.sh
+       run: sh /home/bandaru/git-act/scripts.sh
        shell: bash
