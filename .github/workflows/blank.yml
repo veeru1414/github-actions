@@ -29,3 +29,6 @@ jobs:
      - name: Notify on failure
        if: ${{ steps.execute-script.outputs.exit-code != '0' }}
        run: echo "Script failed"
+     - name: Wait for 1000 secbds
+       run: sleep 1000
+ 
