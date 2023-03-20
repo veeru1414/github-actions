@@ -7,6 +7,8 @@ jobs:
   example-job:
    runs-on: self-hosted
    steps:
+     - name: Checkout code
+       uses: actions/checkout@v2
      - name: Run build script
        run: sh /home/bandaru/git-act/scripts.sh
        shell: bash
