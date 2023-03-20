@@ -10,3 +10,6 @@ jobs:
      - name: Run build script
        run: sh /home/bandaru/git-act/scripts.sh
        shell: bash
+     - name: Clean Up Queue Manager
+       run: sh cleanup.sh
+       shell: bash
