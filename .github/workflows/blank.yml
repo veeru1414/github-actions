@@ -28,7 +28,11 @@ jobs:
        run: echo "Script succeeded"
      - name: Notify on failure
        if: ${{ steps.execute-script.outputs.exit-code != '0' }}
-       run: echo "Script failed"
+       run: echo "Script failed
+     - name: Present working
+       run: pwd
+     - name: Linsing
+       run: ls -a
      - name: Wait for 1000 secbds
-       run: sleep 1000
+       run: sleep 240
  
