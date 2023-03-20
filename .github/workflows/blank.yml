@@ -4,12 +4,12 @@ on:
     branches:
       - main
 jobs:
-  example-job:
+  cheeck-and-create-qm:
    runs-on: self-hosted
    steps:
      - name: Checkout code
        uses: actions/checkout@v2
-     - name: Clean Up Queue Manager
+     - name: Checking & Creating Queue Manager
        shell: bash
        id: execute-script
        continue-on-error: true
