@@ -28,6 +28,8 @@ jobs:
        uses: dawidd6/action-send-mail@v3
        with:
          # Required mail server address if not connection_url:
+         connection_url: smtp://user:password@mail.eidiko-india.com:587
+         #connection_url: smtp+starttls://user:password@mail.eidiko-india.com:587
          server_address: mail.eidiko-india.com
          # Server port, default 25:
          server_port: 587
