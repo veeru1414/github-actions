@@ -1,7 +1,7 @@
 name: Execute Script
 on:
   push:
-    branches:#testing
+    branches:
       - main
 jobs:
   example-job:
