@@ -110,7 +110,7 @@ do
 done
 
 if [ $phase != Running ]
-oc apply -n cp4i -f qm1-qmgr.yaml
+   oc apply -n cp4i -f qm1-qmgr.yaml
 fi
 
 # wait 5 minutes for queue manager to be up and running
