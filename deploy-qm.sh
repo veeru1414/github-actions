@@ -7,15 +7,15 @@ openssl req -newkey rsa:2048 -nodes -keyout qm1.key -subj "/CN=qm1" -x509 -days 
 
 # Create the client key database:
 
-runmqakm -keydb -create -db app1key.kdb -pw password -type cms -stash
+# runmqakm -keydb -create -db app1key.kdb -pw password -type cms -stash
 
 # Add the queue manager public key to the client key database:
 
-runmqakm -cert -add -db app1key.kdb -label qm1cert -file qm1.crt -format ascii -stashed
+#runmqakm -cert -add -db app1key.kdb -label qm1cert -file qm1.crt -format ascii -stashed
 
 # Check. List the database certificates:
 
-runmqakm -cert -list -db app1key.kdb -stashed
+#runmqakm -cert -list -db app1key.kdb -stashed
 
 # Create TLS Secret for the Queue Manager
 
