@@ -1,0 +1,13 @@
+name: Execute Script
+on:
+  push:
+    branches:
+      - main
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/actions
+      - name: Execute script
+        run: bash /home/bandaru/git-act/scripts.sh 
