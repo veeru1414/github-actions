@@ -15,8 +15,8 @@ jobs:
        continue-on-error: true
        run: |
         bash ../cleanup.sh
-        pwd
-        ls
+        echo pwd
+        echo ls
         cd ..
         pwd
         ls
