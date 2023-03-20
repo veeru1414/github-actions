@@ -1,0 +1,12 @@
+name: Execute Script
+on:
+  push:
+    branches:
+      - main
+jobs:
+  example-job:
+   runs-on: self-hosted
+   steps:
+     - name: Run build script
+       run: ./home/bandaru/git-act/scripts.sh
+       shell: bash
