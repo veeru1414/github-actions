@@ -11,5 +11,5 @@ jobs:
        run: sh /home/bandaru/git-act/scripts.sh
        shell: bash
      - name: Clean Up Queue Manager
-       run: sh cleanup.sh
+       run: sh ../cleanup.sh
        shell: bash
