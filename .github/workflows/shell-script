@@ -18,7 +18,7 @@ jobs:
           bash /home/bandaru/git-act/script.sh
           echo "::set-output name=exit-code::$?"
 
-      - name: Take action based on exit code
+      - name: Take action based on exit codes
         if: ${{ steps.execute-script.outputs.exit-code == '0' }}
         run: echo "Script succeeded"
       - name: Notify on failure
