@@ -16,6 +16,8 @@ jobs:
        run: |
         bash ../cleanup.sh
         echo "::set-output name=exit-code::$?"
+        echo "$?"
+        echo "${{ steps.execute-script.outputs.exit-code }}"
      - name: Take action based on exit code
        if: ${{ steps.execute-script.outputs.exit-code == '0' }}
        run: echo "Script succeeded"
