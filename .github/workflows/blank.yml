@@ -9,9 +9,6 @@ jobs:
    steps:
      - name: Checkout code
        uses: actions/checkout@v2
-     - name: Run build script
-       run: sh ../cleanup.sh
-       shell: bash
      - name: Clean Up Queue Manager
        shell: bash
        id: execute-script
