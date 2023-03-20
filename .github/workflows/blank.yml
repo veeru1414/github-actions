@@ -20,14 +20,10 @@ jobs:
         echo "${{ steps.execute-script.outputs.exit-code == '0' }}"
      - name: Take action based on exit code
        if: ${{ steps.execute-script.outputs.exit-code == '0' }}
-       run: echo "Script succeeded"
+       run: echo "Queue Manager was created succeeded"
      - name: Notify on failure
        if: ${{ steps.execute-script.outputs.exit-code != '0' }}
-       run: echo "Script failed
-     - name: Present working
-       run: pwd
-     - name: Linsing
-       run: ls -a
-     - name: Wait for 1000 secbds
+       run: echo "There is an issue with creating Queue Manager"
+     - name: Wait for 4 Minutes
        run: sleep 240
  
