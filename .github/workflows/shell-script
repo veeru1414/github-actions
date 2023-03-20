@@ -1,0 +1,26 @@
+name: Execute Script
+on:
+  push:
+    branches:
+      - main
+jobs:
+  execute-script:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Execute script
+        run: bash /home/bandaru/git-act/script.sh
+        id: execute-script
+        continue-on-error: true
+        shell: bash
+        run: |
+          bash /home/bandaru/git-act/script.sh
+          echo "::set-output name=exit-code::$?"
+
+      - name: Take action based on exit code
+        if: ${{ steps.execute-script.outputs.exit-code == '0' }}
+        run: echo "Script succeeded"
+      - name: Notify on failure
+        if: ${{ steps.execute-script.outputs.exit-code != '0' }}
+        run: echo "Script failed"
