@@ -14,7 +14,7 @@ jobs:
        id: execute-script
        continue-on-error: true
        run: |
-        bash ../cleanup.sh
+        bash cleanup.sh
         bash pwd
         bash ls
         bash cd ..
