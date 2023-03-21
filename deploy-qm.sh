@@ -128,19 +128,19 @@ do
   sleep 5
 done
 
-
+oc delete integrationserver -n $1 mq-integration
 
 cat > integrationserver.yaml << EOF
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
-  name: sample
+  name: mq-integration
   labels: {}
   namespace: cp4i
 spec:
   adminServerSecure: true
   barURL: >-
-    https://github.com/veeru1414/github-actions/releases/download/v1.0.0/mqtest.bar
+    https://app-connect-dash:3443/v1/directories/mqtest?8901c096-c256-4c07-85ce-a6d2ed4b1e5e
   configurations:
     - mqtest-pp
   createDashboardUsers: true
@@ -172,8 +172,22 @@ echo "Deploying Integration Server in $1"
 oc apply -n $1 -f integrationserver.yaml
 
 
+for i in {1..60}
+do
+  phaseIS=`oc get integrationserver -n cp4i mq-integration -o jsonpath="{.status.phase}"`
+  if [ "$phaseIS" == "Running" ] ; then break; fi
+  echo "Waiting for Integration Server...$i"
+  oc get integrationserver -n $1 mq-integration
+  sleep 5
+done
+
 if [ $phase == Running ]
    then echo Queue Manager qm1 is ready; 
+   exit; 
+fi
+
+if [ $phaseIS == Running ]
+   then echo Integration Server is ready; 
    exit; 
 fi
 
