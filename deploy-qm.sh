@@ -175,7 +175,7 @@ oc apply -n $1 -f integrationserver.yaml
 for i in {1..60}
 do
   phaseIS=`oc get integrationserver -n cp4i mq-integration -o jsonpath="{.status.phase}"`
-  if [ "$phaseIS" == "Running" ] ; then break; fi
+  if [ "$phaseIS" == "Ready" ] ; then break; fi
   echo "Waiting for Integration Server...$i"
   oc get integrationserver -n $1 mq-integration
   sleep 5
@@ -183,16 +183,18 @@ done
 
 if [ $phase == Running ]
    then echo Queue Manager qm1 is ready; 
-   exit; 
+   #exit; 
 fi
-
-if [ $phaseIS == Running ]
-   then echo Integration Server is ready; 
-   exit; 
-fi
-
 
 if [ $phase != Running ]
    then echo "*** Queue Manager qm1 is not ready ***"; 
    exit 1; 
 fi
+
+
+if [ $phaseIS == Ready ]
+   then echo Integration Server is ready; 
+   exit; 
+fi
+
+
