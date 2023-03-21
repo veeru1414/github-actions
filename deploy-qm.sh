@@ -171,3 +171,5 @@ spec:
     endpointType: http
   version: 12.0-lts
 EOF
+echo "Deploying Integration Server in $1"
+oc apply -n $1 -f integrationserver.yaml
