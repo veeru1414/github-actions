@@ -1,0 +1,19 @@
+name: CD Pipeline
+on:
+  release:
+    types: [published, edited]
+    tags:
+      - 'v\d+\.\d+\.\d+'
+jobs:
+  release-file-uploaded:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Download release asset
+        uses: actions/download-artifact@v2
+        with:
+          name: my-release-asset
+      - name: Do something with the file
+        run: sleep 240
+
