@@ -1,19 +1,14 @@
 #!/bin/bash
 
-# delete queue manager
+echo "Deleting queue manager...."
 oc delete -n cp4i qmgr qm1
-rm qm1-qmgr.yaml
 
-# delete config map
+echo "Deleting config map...."
 oc delete -n cp4i cm example-01-qm1-configmap
-rm qm1-configmap.yaml
 
-# delete route
+
+echo "Deleting route...."
 oc delete -n cp4i route example-01-qm1-route
-rm qm1chl-route.yaml
 
-# delete secret
+echo "Deleting secret...."
 oc delete -n cp4i secret example-01-qm1-secret
-
-# delete files
-rm qm1.crt qm1.key app1key.* ccdt.json
