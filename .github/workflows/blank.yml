@@ -114,7 +114,6 @@ jobs:
          convert_markdown: true
          attachments: attachments.zip,git.diff,./dist/static/*.js
          priority: low
-     - name: Wait for 4 Minutes
-       run: sleep 240
+
        
  
