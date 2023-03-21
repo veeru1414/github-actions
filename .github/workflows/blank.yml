@@ -4,6 +4,28 @@ on:
     branches:
       - main
 jobs:
+  deploy-dev:
+    runs-on: 'self-hosted'
+    environment: 'dev'
+    needs: cheeck-and-create-qm
+    steps:
+      - name: Deploy in DEV
+        run: echo "Development Deployment Done Successfully"
+  deploy-uat:
+    runs-on: 'self-hosted'
+    environment: 'uat'
+    needs: [cheeck-and-create-qm, deploy-dev]
+    steps:
+      - name: Deploy in UAT
+        run: echo "UAT Deployment Done Successfully"
+  deploy-prod:
+    runs-on: 'self-hosted'
+    environment: 'prod'
+    needs: [cheeck-and-create-qm, deploy-dev,deploy-uat]
+    steps:
+      - name: Deploy in Production
+        run: echo "Prodcution Deployment Done Successfully"
+
   cheeck-and-create-qm:
    runs-on: self-hosted
    steps:
@@ -44,13 +66,6 @@ jobs:
          convert_markdown: true
          attachments: attachments.zip,git.diff,./dist/static/*.js
          priority: low
-     - name: Request approval
-       uses: peter-evans/create-issue-from-file@v2
-       with:
-         title: 'Approval Required: ${{ github.event.pull_request.title }}'
-         body: |
-           Please review and approve this pull request.
-           assignees: veeru1414, tirapa-eidiko
      - name: Wait for 4 Minutes
        run: sleep 240
        
