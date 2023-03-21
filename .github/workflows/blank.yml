@@ -16,8 +16,31 @@ jobs:
     environment: 'uat'
     needs: [cheeck-and-create-qm, deploy-dev]
     steps:
-      - name: Deploy in UAT
-        run: echo "UAT Deployment Done Successfully"
+     - name: Checkout code
+       uses: actions/checkout@v2
+     - name: Execute Queue Manager Cleanup Script
+       shell: bash
+       id: execute-cleanup-script
+       continue-on-error: true
+       run: |
+        bash cleanup.sh
+        echo "exit-code=$?" >> $GITHUB_STATE
+        echo "exit-code=$?" >> $GITHUB_OUTPUT
+        echo "$?"
+        echo "${{ steps.execute-cleanup-script.outputs.exit-code == '0' }}"
+     - name: Checking & Creating Queue Manager
+       shell: bash
+       id: execute-script
+       continue-on-error: true
+       run: |
+        bash deploy-qm.sh
+        echo "exit-code=$?" >> $GITHUB_STATE
+        echo "exit-code=$?" >> $GITHUB_OUTPUT
+        echo "$?"
+        echo "${{ steps.execute-script.outputs.exit-code == '0' }}"
+     - name: Take action based on exit code
+       if: ${{ steps.execute-script.outputs.exit-code == '0' }}
+       run: echo "Queue Manager was created succeeded"
   deploy-prod:
     runs-on: 'self-hosted'
     environment: 'prod'
@@ -57,7 +80,7 @@ jobs:
          server_port: 587
          secure: true
          subject: Github Actions MQ Deployed Successfully
-         to: bharathmanikanta.gundapu@eidiko-india.com
+         to: bharathmanikanta.gundapu@eidiko-india.com,tirapareddy.tondapu@eidiko.com
          from: Luke Skywalker # <bharathmanikanta.gundapu@eidiko-india.com>
          body: Build job of ${{github.repository}} completed successfully! \n Queue Manager Was Deployed Succssfully!!
          cc: bharathmanikanta.gundapu@eidiko-india.com
