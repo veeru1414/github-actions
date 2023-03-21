@@ -131,6 +131,8 @@ done
 
 
 cat > integrationserver.yaml << EOF
+apiVersion: appconnect.ibm.com/v1beta1
+kind: IntegrationServer
 metadata:
   name: sample
   labels: {}
