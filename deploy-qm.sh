@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Testing Parameterization $1"
 
 # Create a private key and a self-signed certificate for the queue manager
 
