@@ -33,7 +33,7 @@ data:
   qm1.mqsc: |
     DEFINE QLOCAL('IN')
     DEFINE QLOCAL('OUT')
-    DEFINE CHANNEL(IN_OUT) CHLTYPE(SVRCONN) REPLACE TRPTYPE(TCP)
+    DEFINE CHANNEL(IN_OUT) CHLTYPE(SVRCONN) REPLACE TRPTYPE(TCP) SSLCAUTH(OPTIONAL)
     ALTER QMGR CHLAUTH(DISABLED) CONNAUTH('')
     REFRESH SECURITY
 EOF
@@ -91,7 +91,7 @@ spec:
           name: qmgr
   version: 9.3.0.0-r2
   web:
-    enabled: false
+    enabled: true
   pki:
     keys:
       - name: example
