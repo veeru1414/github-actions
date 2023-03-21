@@ -10,6 +10,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Get release info
+        uses: actions/github-script@v5
+        id: get_release_info
+        with:
+          script: |
+            const release = await github.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: context.payload.release.tag_name
+            });
+            console.log(`Release name: ${release.data.name}`);
+            console.log(`Release tag: ${release.data.tag_name}`);
+      - name: Print release info
+        run: |
+          echo "Release name: ${{ steps.get_release_info.outputs.name }}"
+          echo "Release tag: ${{ steps.get_release_info.outputs.tag }}"
       - name: Download release asset
         uses: actions/download-artifact@v2
         with:
