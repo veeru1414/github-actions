@@ -133,8 +133,11 @@ if [ $phase == Running ]
    exit; 
 fi
 
-echo "*** Queue Manager qm1 is not ready ***"
-exit 1
+
+if [ $phase != Running ]
+   then echo "*** Queue Manager qm1 is not ready ***"; 
+   exit 1; 
+fi
 
 cat > integrationserver.yaml << EOF
 metadata:
@@ -171,5 +174,6 @@ spec:
     endpointType: http
   version: 12.0-lts
 EOF
+
 echo "Deploying Integration Server in $1"
 oc apply -n $1 -f integrationserver.yaml
