@@ -135,3 +135,39 @@ fi
 
 echo "*** Queue Manager qm1 is not ready ***"
 exit 1
+
+cat > integrationserver.yaml << EOF
+metadata:
+  name: sample
+  labels: {}
+  namespace: cp4i
+spec:
+  adminServerSecure: true
+  barURL: >-
+    https://github.com/veeru1414/github-actions/releases/download/v1.0.0/mqtest.bar
+  configurations:
+    - mqtest-pp
+  createDashboardUsers: true
+  designerFlowsOperationMode: disabled
+  enableMetrics: true
+  license:
+    accept: true
+    license: L-APEH-CJUCNR
+    use: CloudPakForIntegrationNonProduction
+  pod:
+    containers:
+      runtime:
+        resources:
+          limits:
+            cpu: 300m
+            memory: 368Mi
+          requests:
+            cpu: 300m
+            memory: 368Mi
+  replicas: 1
+  router:
+    timeout: 120s
+  service:
+    endpointType: http
+  version: 12.0-lts
+EOF
