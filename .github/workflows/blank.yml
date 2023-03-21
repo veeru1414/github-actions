@@ -86,6 +86,7 @@ jobs:
         echo "exit-code=$?" >> $GITHUB_STATE
         echo "exit-code=$?" >> $GITHUB_OUTPUT
         echo "$?"
+        echo "${{ env.NAMESPACE }}"
         echo "${{ steps.execute-script.outputs.exit-code == '0' }}"
      - name: Take action based on exit code
        if: ${{ steps.execute-script.outputs.exit-code == '0' }}
