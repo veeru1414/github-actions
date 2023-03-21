@@ -20,7 +20,7 @@ openssl req -newkey rsa:2048 -nodes -keyout qm1.key -subj "/CN=qm1" -x509 -days 
 
 # Create TLS Secret for the Queue Manager
 
-oc create secret tls example-01-qm1-secret -n cp4i --key="qm1.key" --cert="qm1.crt"
+oc create secret tls example-01-qm1-secret -n $1 --key="qm1.key" --cert="qm1.crt"
 
 # Create a config map containing MQSC commands
 
@@ -36,7 +36,7 @@ data:
     SET CHLAUTH(QM1CHL) TYPE(BLOCKUSER) USERLIST('nobody') ACTION(ADD)
 EOF
 
-oc apply -n cp4i -f qm1-configmap.yaml
+oc apply -n $1 -f qm1-configmap.yaml
 
 # Create the required route for SNI
 
@@ -56,7 +56,7 @@ spec:
     termination: passthrough
 EOF
 
-oc apply -n cp4i -f qm1chl-route.yaml
+oc apply -n $1 -f qm1chl-route.yaml
 
 # Deploy the queue manager
 
@@ -103,25 +103,25 @@ EOF
 
 for i in {1}
 do
-  phase=`oc get qmgr -n cp4i qm1 -o jsonpath="{.status.phase}"`
+  phase=`oc get qmgr -n $1 qm1 -o jsonpath="{.status.phase}"`
   if [ "$phase" == "Running" ] ; then break; fi
   echo "Waiting for qm1...$i"
-  oc get qmgr -n cp4i qm1
+  oc get qmgr -n $1 qm1
   sleep 5
 done
 
 
-oc apply -n cp4i -f qm1-qmgr.yaml;
+oc apply -n $1 -f qm1-qmgr.yaml;
 
 
 # wait 5 minutes for queue manager to be up and running
 # (shouldn't take more than 2 minutes, but just in case)
 for i in {1..60}
 do
-  phase=`oc get qmgr -n cp4i qm1 -o jsonpath="{.status.phase}"`
+  phase=`oc get qmgr -n $1 qm1 -o jsonpath="{.status.phase}"`
   if [ "$phase" == "Running" ] ; then break; fi
   echo "Waiting for qm1...$i"
-  oc get qmgr -n cp4i qm1
+  oc get qmgr -n $1 qm1
   sleep 5
 done
 
