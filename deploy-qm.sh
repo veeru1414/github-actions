@@ -141,7 +141,7 @@ metadata:
 spec:
   adminServerSecure: true
   barURL: >-
-    https://app-connect-dash:3443/v1/directories/MqDemo?654a4cb1-4f3f-4b11-b027-d2b699f7d51f
+    https://github.com/veeru1414/github-actions/releases/download/v1.0.0/mqtest.bar
   configurations:
     - mqtest-pp
   createDashboardUsers: true
