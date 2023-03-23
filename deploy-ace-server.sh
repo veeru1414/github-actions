@@ -10,7 +10,7 @@ kind: IntegrationServer
 metadata:
   name: mq-integration
   labels: {}
-  namespace: cp4i
+  namespace: $1
 spec:
   adminServerSecure: true
   barURL: >-
