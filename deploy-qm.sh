@@ -199,4 +199,9 @@ if [ $phaseIS == Ready ]
    exit; 
 fi
 
+if [ $phaseIS != Ready ]
+   then echo Integration Server is NOT ready; 
+   exit 1; 
+fi
+
 
