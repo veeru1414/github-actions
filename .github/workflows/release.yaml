@@ -19,8 +19,8 @@ jobs:
             console.log(`Release tag: ${context.payload.release}`);
       - name: Print release info
         run: |
-          echo "Release name: ${{ context.payload.release }}"
-          echo "Release tag: ${{context.payload.release}}"
+          echo "Release name: ${{ context.payload.release.tag_name }}"
+          echo "Release tag: ${{context.payload.release.tag_name}}"
       - name: Download release asset
         uses: actions/download-artifact@v2
         with:
