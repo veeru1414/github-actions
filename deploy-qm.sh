@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Testing Parameterization $1"
+echo "Integration Server Name: $2"
 
 # Create a private key and a self-signed certificate for the queue manager
 
@@ -127,7 +128,7 @@ do
   sleep 5
 done
 
-oc delete integrationserver -n $1 mq-integration
+oc delete integrationserver -n $1 $2
 
 #Create Integration Server
 
@@ -135,9 +136,9 @@ cat > integrationserver.yaml << EOF
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
-  name: mq-integration
+  name: $2
   labels: {}
-  namespace: cp4i
+  namespace: $1
 spec:
   adminServerSecure: true
   barURL: >-
@@ -170,16 +171,16 @@ spec:
   version: 12.0-lts
 EOF
 
-echo "Deploying Integration Server in $1"
+echo "Deploying Integration Server $2 in $1 namespace"
 oc apply -n $1 -f integrationserver.yaml
 
 
 for i in {1..60}
 do
-  phaseIS=`oc get integrationserver -n cp4i mq-integration -o jsonpath="{.status.phase}"`
+  phaseIS=`oc get integrationserver -n $1 $2 -o jsonpath="{.status.phase}"`
   if [ "$phaseIS" == "Ready" ] ; then break; fi
   echo "Waiting for Integration Server...$i"
-  oc get integrationserver -n $1 mq-integration
+  oc get integrationserver -n $1 $2
   sleep 5
 done
 
