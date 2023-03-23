@@ -64,6 +64,7 @@ done
 
 if [ $phaseIS == Ready ]
    then echo Integration Server is ready; 
+   oc get integrationserver -n $1 mq-integration;
    exit; 
 fi
 
