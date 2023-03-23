@@ -5,8 +5,8 @@ on:
     tags:
       - 'v\d+\.\d+\.\d+'
 jobs:
-  release-file-uploaded:
-    runs-on: ubuntu-latest
+  release-pipeline:
+    runs-on: self-hosted
     steps:
       - name: Get release info
         uses: actions/github-script@v5
