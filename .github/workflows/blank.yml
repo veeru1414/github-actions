@@ -97,6 +97,26 @@ jobs:
      - name: Notify on failure
        if: ${{ steps.execute-script.outputs.exit-code != '0' }}
        run: echo "There is an issue with creating Queue Manager"
+     - name: Create Release
+       id: create_release
+       uses: actions/create-release@v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+         tag_name: ${{ github.ref }}
+         release_name: Release ${{ github.ref }}
+         draft: false
+         prerelease: false
+     - name: Upload Release Asset
+       id: upload-release-asset 
+       uses: actions/upload-release-asset@v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+         upload_url: ${{ steps.create_release.outputs.upload_url }} 
+         asset_path: ./deploy-ace-server.sh
+         asset_name: deploy-ace-server.sh
+         asset_content_type: application/sh
      - name: Send mail
        if: ${{ steps.execute-script.outputs.exit-code == '0' }}
        uses: dawidd6/action-send-mail@v3
