@@ -19,7 +19,7 @@ jobs:
             console.log(`Release name: ${context.payload.release.tag_name}`);
             console.log(`Release tag: ${context.payload.release}`);
             console.log(context)
-            return ${context.payload.release.tag_name};
+            return `${context.payload.release.tag_name}`;
       - name: Print release info
         run: |
           echo "Release name: ${{ steps.get_release_info.outputs.result }}"
