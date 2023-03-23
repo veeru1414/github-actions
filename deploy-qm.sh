@@ -141,7 +141,7 @@ metadata:
 spec:
   adminServerSecure: true
   barURL: >-
-    https://github.com/veeru1414/github-actions/releases/download/v9.1.1/Sample.bar
+    https://github.com/veeru1414/github-actions/releases/download/v6.0.0/mqtest.bar
   configurations:
     - mqtest-pp
     - sample-barauth
