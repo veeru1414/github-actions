@@ -144,6 +144,7 @@ spec:
     https://github.com/veeru1414/github-actions/releases/download/v1.0.0/mqtest.bar
   configurations:
     - mqtest-pp
+    - sample-barauth
   createDashboardUsers: true
   designerFlowsOperationMode: disabled
   enableMetrics: true
