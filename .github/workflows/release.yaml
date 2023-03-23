@@ -16,11 +16,11 @@ jobs:
         with:
           script: |
             console.log(`Release name: ${context.payload.release.tag_name}`);
-            console.log(`Release tag: ${release.data.tag_name}`);
+            console.log(`Release tag: ${context.payload.release}`);
       - name: Print release info
         run: |
-          echo "Release name: ${{ steps.get_release_info.outputs.name }}"
-          echo "Release tag: ${{ steps.get_release_info.outputs.tag }}"
+          echo "Release name: ${{ context.payload.release }}"
+          echo "Release tag: ${{context.payload.release}}"
       - name: Download release asset
         uses: actions/download-artifact@v2
         with:
