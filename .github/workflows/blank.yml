@@ -16,7 +16,7 @@ jobs:
        id: execute-cleanup-script #
        continue-on-error: true
        run: |
-        bash cleanup.sh ${{ vars.NAMESPACE }}
+        bash cleanup.sh ${{ vars.NAMESPACE }} ${{ vars.IS_NAME }}
         echo "exit-code=$?" >> $GITHUB_STATE
         echo "exit-code=$?" >> $GITHUB_OUTPUT
         echo "$?"
@@ -26,7 +26,7 @@ jobs:
        id: execute-script
        continue-on-error: true
        run: |
-        bash deploy-qm.sh ${{ vars.NAMESPACE }}
+        bash deploy-qm.sh ${{ vars.NAMESPACE }} ${{ vars.IS_NAME }}
         echo "exit-code=$?" >> $GITHUB_STATE
         echo "exit-code=$?" >> $GITHUB_OUTPUT
         echo "$?"
@@ -46,7 +46,7 @@ jobs:
        id: execute-cleanup-script
        continue-on-error: true
        run: |
-        bash cleanup.sh ${{ vars.NAMESPACE }}
+        bash cleanup.sh ${{ vars.NAMESPACE }} ${{ vars.IS_NAME }}
         echo "exit-code=$?" >> $GITHUB_STATE
         echo "exit-code=$?" >> $GITHUB_OUTPUT
         echo "$?"
@@ -56,7 +56,7 @@ jobs:
        id: execute-script
        continue-on-error: true
        run: |
-        bash deploy-qm.sh ${{ vars.NAMESPACE }}
+        bash deploy-qm.sh ${{ vars.NAMESPACE }} ${{ vars.IS_NAME }}
         echo "exit-code=$?" >> $GITHUB_STATE
         echo "exit-code=$?" >> $GITHUB_OUTPUT
         echo "$?"
@@ -82,7 +82,7 @@ jobs:
        id: execute-script
        continue-on-error: true
        run: |
-        bash deploy-qm.sh ${{ vars.NAMESPACE }}
+        bash deploy-qm.sh ${{ vars.NAMESPACE }} ${{ vars.IS_NAME }}
         echo "exit-code=$?" >> $GITHUB_STATE
         echo "exit-code=$?" >> $GITHUB_OUTPUT
         echo "$?"
