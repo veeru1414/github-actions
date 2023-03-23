@@ -17,10 +17,11 @@ jobs:
           script: |
             console.log(`Release name: ${context.payload.release.tag_name}`);
             console.log(`Release tag: ${context.payload.release}`);
+            echo "tag_name=${context.payload.release.tag_name}" >> $GITHUB_STATE
+            echo "tag_name=${context.payload.release.tag_name}" >> $GITHUB_OUTPUT
       - name: Print release info
         run: |
-          echo "Release name: ${{ context.payload.release.tag_name }}"
-          echo "Release tag: ${{context.payload.release.tag_name}}"
+          echo "Release name: ${{ steps.get_release_info.outputs.tag_name }}"
       - name: Download release asset
         uses: actions/download-artifact@v2
         with:
