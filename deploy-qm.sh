@@ -149,7 +149,7 @@ spec:
   enableMetrics: true
   license:
     accept: true
-    license: L-APEH-CJUCNR
+    license: L-MSST-58UM6D
     use: CloudPakForIntegrationNonProduction
   pod:
     containers:
