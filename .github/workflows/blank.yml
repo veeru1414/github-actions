@@ -1,4 +1,4 @@
-name: MQ ACE CP4I OCP CI/CD Pipeline.
+name: MQ ACE CP4I OCP CI/CD Pipeline
 on:
   push:
     branches:
