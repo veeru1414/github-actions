@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Login into OCP
+
+oc login --token=sha256~LtlDc7khV30HZvE1c-2VgqiWvxxYrhx1ua2zeoXm4m0 --server=https://api.openshift.eidikointernal.com:6443
+
 echo "Testing Parameterization $1"
 
 # Create a private key and a self-signed certificate for the queue manager
