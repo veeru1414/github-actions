@@ -129,6 +129,8 @@ done
 
 oc delete integrationserver -n $1 mq-integration
 
+#Creating Integration Server
+
 cat > integrationserver.yaml << EOF
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
