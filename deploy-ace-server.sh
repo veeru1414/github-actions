@@ -1,14 +1,14 @@
 echo "https://github.com/veeru1414/github-actions/releases/download/$2/mqtest.bar"
 
-echo "Deleting Existing Integration Server..."
+echo "Deleting Existing Integration Server $3..."
 
-oc delete integrationserver -n $1 mq-integration
+oc delete integrationserver -n $1 $3
 
 cat > integrationserver.yaml << EOF
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
-  name: mq-integration
+  name: $3
   labels: {}
   namespace: $1
 spec:
@@ -55,7 +55,7 @@ do
   phaseIS=`oc get integrationserver -n cp4i mq-integration -o jsonpath="{.status.phase}"`
   if [ "$phaseIS" == "Ready" ] ; then break; fi
   echo "Waiting for Integration Server...$i"
-  oc get integrationserver -n $1 mq-integration
+  oc get integrationserver -n $1 $3
   sleep 5
 done
 
@@ -64,7 +64,7 @@ done
 
 if [ $phaseIS == Ready ]
    then echo Integration Server is ready; 
-   oc get integrationserver -n $1 mq-integration;
+   oc get integrationserver -n $1 $3;
    exit; 
 fi
 
