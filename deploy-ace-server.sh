@@ -1,4 +1,4 @@
-echo "https://github.com/veeru1414/github-actions/releases/download/"+$2+"/Sample.bar"
+echo "https://github.com/veeru1414/github-actions/releases/download/$2/mqtest.bar"
 
 cat > integrationserver.yaml << EOF
 apiVersion: appconnect.ibm.com/v1beta1
@@ -10,7 +10,7 @@ metadata:
 spec:
   adminServerSecure: true
   barURL: >-
-    https://github.com/veeru1414/github-actions/releases/download/v9.1.1/Sample.bar
+    https://github.com/veeru1414/github-actions/releases/download/$2/mqtest.bar
   configurations:
     - mqtest-pp
     - sample-barauth
