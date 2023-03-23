@@ -1,5 +1,9 @@
 echo "https://github.com/veeru1414/github-actions/releases/download/$2/mqtest.bar"
 
+echo "Deleting Existing Integration Server..."
+
+oc delete integrationserver -n $1 mq-integration
+
 cat > integrationserver.yaml << EOF
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
