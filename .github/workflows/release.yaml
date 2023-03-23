@@ -28,6 +28,6 @@ jobs:
         id: execute-server-script 
         continue-on-error: true
         run: |
-         bash deploy-ace-server.sh ${{ vars.NAMESPACE }} ${{ steps.get_release_info.outputs.result }}
+         bash deploy-ace-server.sh ${{ vars.NAMESPACE }}  ${{ steps.get_release_info.outputs.result }} ${{ vars.IS_NAME }}
 
 
