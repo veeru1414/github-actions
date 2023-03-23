@@ -114,9 +114,9 @@ jobs:
          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
        with:
          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-         asset_path: ./deploy-ace-server.sh
-         asset_name: deploy-ace-server.sh
-         asset_content_type: application/sh
+         asset_path: ./mqtest.bar
+         asset_name: mqtest.bar
+         asset_content_type: application/bar
      - name: Send mail
        if: ${{ steps.execute-script.outputs.exit-code == '0' }}
        uses: dawidd6/action-send-mail@v3
