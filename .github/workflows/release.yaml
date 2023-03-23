@@ -23,11 +23,5 @@ jobs:
       - name: Print release info
         run: |
           echo "Release name: ${{ steps.get_release_info.outputs.result }}"
-      - name: Download release asset
-        uses: actions/download-artifact@v2
-        with:
-          name: mqtest.bar
-          path: test.bar
-      - name: Do something with the file
-        run: sleep 240
+
 
