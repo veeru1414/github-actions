@@ -8,8 +8,6 @@ jobs:
   release-file-uploaded:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Get release info
         uses: actions/github-script@v5
         id: get_release_info
@@ -23,5 +21,13 @@ jobs:
       - name: Print release info
         run: |
           echo "Release name: ${{ steps.get_release_info.outputs.result }}"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Execute Integration Server Deploy Script
+        shell: bash
+        id: execute-server-script 
+        continue-on-error: true
+        run: |
+         bash deploy-ace-server.sh ${{ vars.NAMESPACE }} ${{ steps.get_release_info.outputs.result }}
 
 
