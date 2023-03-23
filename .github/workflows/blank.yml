@@ -86,8 +86,10 @@ jobs:
         echo "exit-code=$?" >> $GITHUB_STATE
         echo "exit-code=$?" >> $GITHUB_OUTPUT
         echo "$?"
-        echo "${{ vars.NAMESPACE }}"
-        echo "${{ env.NAMESPACE }}"
+        echo "Namespace: ${{ vars.NAMESPACE }}"
+        echo "JOB: ${{ github.job }}"
+        echo "RunNumber: ${{ github.run_number }}"
+        echo "RUNID: ${{ github.run_id }}"
         echo "${{ steps.execute-script.outputs.exit-code == '0' }}"
      - name: Take action based on exit code
        if: ${{ steps.execute-script.outputs.exit-code == '0' }}
