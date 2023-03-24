@@ -1,0 +1,15 @@
+name: Monitor MQ & ACE Deployments
+
+on:
+  schedule:
+    - cron: '*/15 * * * *' # Run every 15 minutes
+jobs:
+  monitor-every-15-minutes:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Run script
+        run: |
+          # Add your script commands here
